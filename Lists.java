@@ -72,11 +72,13 @@ public class Lists {
         return output;
     }
 
-    public List<Program> ThisPeriodOfTimeAndChannel(String t, String channel) {
-        List<Program> list = this.ThisTime(t);
+    public List<Program> ThisPeriodOfTimeAndChannel(String t1, String t2, String channel) {
+        List<Program> list = this.SortTime();
+        BroadcastsTime time1 = new BroadcastsTime(t1);
+        BroadcastsTime time2 = new BroadcastsTime(t1);
         List<Program> output = new ArrayList<>();
         for (Program s : list) {
-            if (s.channel.equals(channel)) {
+            if (s.time.between(time1,time2)) {
                 output.add(s);
             }
         }
